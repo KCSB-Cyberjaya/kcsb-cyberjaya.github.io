@@ -1,0 +1,9 @@
+{
+  "scanned_at": null,
+  "public_names_enabled": false,
+  "totals": {"datasets": 0, "images": 0, "label_files": 0, "boxes": 0, "invalid_yolo_lines": 0, "corrupted_images": null, "images_without_label_file": 0, "orphan_label_files": 0, "image_list_missing": 0, "dataset_size_mb": 0},
+  "categories": {},
+  "classes": {},
+  "datasets": [],
+  "failures": []
+}

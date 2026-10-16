@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="dark light">
+  <title>KCSB Cyberjaya · YOLO Dataset Dashboard</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <main>
+    <header class="masthead">
+      <div>
+        <p class="eyebrow">KCSB CYBERJAYA · TRUENAS · YOLO DETECTION</p>
+        <h1>YOLO Annotation Dataset Dashboard</h1>
+        <p class="intro">TrueNAS CORE exports · Windows scanner · Public-safe GitHub Pages report</p>
+      </div>
+      <div class="meta"><span id="updated">Loading...</span><button id="downloadCsv" type="button">Export filtered CSV ↓</button></div>
+    </header>
+    <div id="error" role="alert" hidden></div>
+    <div id="notScanned" class="notice" hidden>There is no NAS scan published yet. Run <code>publish-pages.ps1</code> on Windows to populate this dashboard.</div>
+    <div id="privacy" class="privacy" hidden>Dataset IDs and class names are anonymized. Original names and detailed QC filenames remain on the Windows scanner.</div>
+    <section id="metrics" class="metrics" aria-label="Totals"></section>
+    <section class="panels">
+      <div class="panel"><div class="panelhead"><h2>Images by category</h2><p>Exported images</p></div><div id="categoryChart" class="bars"></div></div>
+      <div class="panel"><div class="panelhead"><h2>Bounding boxes by class</h2><p>Top classes in selection</p></div><div id="classChart" class="bars"></div></div>
+    </section>
+    <section class="panel tablePanel">
+      <div class="panelhead"><h2>Datasets</h2><p id="rowCount"></p></div>
+      <div class="filters">
+        <label>Search <input id="search" type="search" placeholder="Dataset ID or visible class..."></label>
+        <label>Category <select id="category"><option value="all">All categories</option></select></label>
+        <label>Sort <select id="sort"><option value="path">Dataset ID</option><option value="images">Images · most first</option><option value="boxes">Boxes · most first</option><option value="errors">QC errors · most first</option><option value="size">Dataset size · largest first</option></select></label>
+        <label class="check"><input id="qcOnly" type="checkbox"> QC issues only</label>
+      </div>
+      <div class="tableScroll"><table><thead><tr><th>Dataset (click for details)</th><th>Images</th><th>Label files</th><th>Boxes</th><th>Corrupted</th><th>Invalid lines</th><th>Missing list refs</th></tr></thead><tbody id="datasetRows"></tbody></table></div>
+      <div id="empty" class="empty" hidden>No datasets match these filters.</div>
+    </section>
+    <section id="detail" class="panel" hidden aria-live="polite"></section>
+    <section id="scanErrors" class="panel" hidden></section>
+    <footer><p>Public dashboard for finished TrueNAS exports only. Original images, YOLO text files, and private error reports are not uploaded. Empty or missing YOLO label files may represent valid backgrounds. This does not show unfinished CVAT tasks.</p></footer>
+  </main>
+</body>
+</html>
